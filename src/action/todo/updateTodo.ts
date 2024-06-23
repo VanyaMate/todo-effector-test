@@ -3,10 +3,11 @@ import { TODO_LOCAL_STORAGE_NAME } from '.const.ts';
 import { DomainUpdateType } from '@/types/todo/update-todo.types.ts';
 
 
-export const updateTodo = function (id: string, data: DomainUpdateType): Promise<DomainTodo> {
+export const updateTodo = function (updateData: [ string, DomainUpdateType ]): Promise<DomainTodo> {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             try {
+                const [ id, data ]        = updateData;
                 const todos: DomainTodo[] = JSON.parse(localStorage.getItem(TODO_LOCAL_STORAGE_NAME));
 
                 for (let i = 0; i < todos.length; i++) {
