@@ -1,0 +1,1 @@
+export const TODO_LOCAL_STORAGE_NAME = 'todo-app_todos';
