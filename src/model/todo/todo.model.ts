@@ -1,4 +1,4 @@
-import { createEffect, createStore } from 'effector';
+import { createEffect, createStore, fork } from 'effector';
 import { DomainTodo } from '@/types/todo/todo.type.ts';
 import { addTodo } from '@/action/todo/addTodo.ts';
 import { loadTodos } from '@/action/todo/loadTodos.ts';
@@ -15,7 +15,11 @@ export const updateTodoEffect = createEffect<[ string, DomainUpdateType ], Domai
 
 export const $todoLoading = createStore<boolean>(false)
     .on(loadTodosEffect, () => true)
-    .on(loadTodosEffect.done, () => false);
+    .on(loadTodosEffect.finally, () => false);
+
+export const $todoAdding = createStore<boolean>(false)
+    .on(addTodoEffect, () => true)
+    .on(addTodoEffect.finally, () => false);
 
 export const $todoItemsPendingStatus = createStore<Record<string, boolean>>({})
     .on(addTodoEffect.done, (state, payload) => ({
@@ -24,23 +28,24 @@ export const $todoItemsPendingStatus = createStore<Record<string, boolean>>({})
     }))
     .on(removeTodoEffect, (state, id) => {
         state[id] = true;
+        return { ...state };
     })
     .on(removeTodoEffect.done, (state, payload) => {
         delete state[payload.params[0]];
+        return { ...state };
     })
-    .on(updateTodoEffect, (state, data) => {
-        state[data[0]] = true;
-    })
-    .on(updateTodoEffect.done, (state, payload) => {
-        state[payload.result.id] = false;
-    });
+    .on(updateTodoEffect, (state, data) => ({
+        ...state,
+        [data[0]]: true,
+    }))
+    .on(updateTodoEffect.finally, (state, { params }) => ({
+        ...state,
+        [params[0]]: false,
+    }));
 
 export const $todoItems = createStore<Array<DomainTodo>>([])
-    .on(addTodoEffect.done, (state, payload) => {
-        state.push(payload.result);
-        return state;
-    })
-    .on(loadTodosEffect.done, (_, payload) => payload.result)
+    .on(addTodoEffect.done, (state, payload) => [ ...state, payload.result ])
+    .on(loadTodosEffect.done, (state, payload) => [ ...state, ...payload.result ])
     .on(removeTodoEffect.done, (state, payload) => state.filter((todo) => todo.id !== payload.params))
     .on(updateTodoEffect.done, (state, payload) => state.map(
         (todo) => todo.id === payload.result.id ? payload.result : todo,

@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef, FC, memo } from 'react';
 import './index.css';
+import { TodoWindow } from '@/ui/widget/TodoWindow/TodoWindow.tsx';
 
 
 export type AppProps =
@@ -9,8 +10,6 @@ export type AppProps =
 export const App: FC<AppProps> = memo(function App (props) {
 
     return (
-        <div>
-            Clear Project
-        </div>
+        <TodoWindow/>
     );
 });

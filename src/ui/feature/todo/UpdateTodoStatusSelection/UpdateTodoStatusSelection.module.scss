@@ -1,0 +1,8 @@
+.container {
+    padding : 5px;
+
+    &.pending {
+        pointer-events : none;
+        opacity        : .6;
+    }
+}

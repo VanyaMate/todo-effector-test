@@ -1,0 +1,6 @@
+.container {
+    &.pending {
+        pointer-events : none;
+        opacity        : .6;
+    }
+}

@@ -1,0 +1,13 @@
+.container {
+    padding       : 5px;
+    border-radius : 5px;
+    border        : 1px solid #aaa;
+    display       : flex;
+    align-items   : center;
+    gap           : 10px;
+
+    .title {
+        font-size : 18px;
+        flex      : 1;
+    }
+}

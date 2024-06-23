@@ -1,0 +1,28 @@
+.container {
+    display : flex;
+    gap     : 5px;
+
+    &.pending {
+        pointer-events : none;
+        opacity        : .6;
+    }
+
+    .form {
+        display        : flex;
+        flex-direction : column;
+        gap            : 2px;
+        flex           : 1;
+
+        .label {
+            color : #777;
+        }
+
+        .input {
+            padding : 10px;
+        }
+    }
+
+    .button {
+        padding : 10px;
+    }
+}

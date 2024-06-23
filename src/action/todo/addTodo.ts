@@ -12,7 +12,7 @@ export const addTodo = function (data: DomainCreateTodo): Promise<DomainTodo> {
                     title : data.title,
                     status: DomainTodoStatus.AWAIT,
                 };
-                const todos: DomainTodo[] = JSON.parse(localStorage.getItem(TODO_LOCAL_STORAGE_NAME));
+                const todos: DomainTodo[] = JSON.parse(localStorage.getItem(TODO_LOCAL_STORAGE_NAME) ?? '[]');
 
                 todos.push(todo);
                 localStorage.setItem(TODO_LOCAL_STORAGE_NAME, JSON.stringify(todos));

@@ -8,14 +8,15 @@ export const updateTodo = function (updateData: [ string, DomainUpdateType ]): P
         setTimeout(() => {
             try {
                 const [ id, data ]        = updateData;
-                const todos: DomainTodo[] = JSON.parse(localStorage.getItem(TODO_LOCAL_STORAGE_NAME));
+                const todos: DomainTodo[] = JSON.parse(localStorage.getItem(TODO_LOCAL_STORAGE_NAME) ?? '[]');
 
                 for (let i = 0; i < todos.length; i++) {
                     const todo = todos[i];
                     if (todo.id === id) {
                         todos[i] = { ...todo, ...data };
                         localStorage.setItem(TODO_LOCAL_STORAGE_NAME, JSON.stringify(todos));
-                        resolve(todo[i]);
+                        resolve(todos[i]);
+                        break;
                     }
                 }
 
