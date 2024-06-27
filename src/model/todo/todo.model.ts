@@ -1,4 +1,4 @@
-import { createEffect, createStore, fork } from 'effector';
+import { createEffect, createStore } from 'effector';
 import { DomainTodo } from '@/types/todo/todo.type.ts';
 import { addTodo } from '@/action/todo/addTodo.ts';
 import { loadTodos } from '@/action/todo/loadTodos.ts';
