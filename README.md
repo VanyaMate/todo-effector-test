@@ -4,3 +4,6 @@
 
 - React
 - Effector
+
+----
+Bundle: **207.32kb**, **68.98kb gzip**

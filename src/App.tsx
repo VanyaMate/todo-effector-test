@@ -7,7 +7,7 @@ export type AppProps =
     {}
     & ComponentPropsWithoutRef<'div'>;
 
-export const App: FC<AppProps> = memo(function App (props) {
+export const App: FC<AppProps> = memo(function App () {
 
     return (
         <TodoWindow/>

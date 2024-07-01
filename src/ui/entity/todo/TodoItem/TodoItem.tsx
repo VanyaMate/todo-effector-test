@@ -6,20 +6,20 @@ import css from './TodoItem.module.scss';
 export type TodoItemProps =
     {
         title: string;
-        prefix?: ReactNode;
+        prefixNode?: ReactNode;
         postfix?: ReactNode;
     }
     & ComponentPropsWithoutRef<'div'>;
 
 export const TodoItem: FC<TodoItemProps> = memo(function TodoItem (props) {
-    const { prefix, postfix, title, className, ...other } = props;
+    const { prefixNode, postfix, title, className, ...other } = props;
 
     return (
         <article
             { ...other }
             className={ classNames(css.container, {}, [ className ]) }
         >
-            { prefix }
+            { prefixNode }
             <h3 className={ css.title }>{ title }</h3>
             { postfix }
         </article>

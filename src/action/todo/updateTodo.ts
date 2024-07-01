@@ -1,5 +1,5 @@
 import { DomainTodo } from '@/types/todo/todo.type.ts';
-import { TODO_LOCAL_STORAGE_NAME } from '.const.ts';
+import { TODO_LOCAL_STORAGE_NAME } from './const.ts';
 import { DomainUpdateType } from '@/types/todo/update-todo.types.ts';
 
 

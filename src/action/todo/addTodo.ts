@@ -1,6 +1,6 @@
 import { DomainCreateTodo } from '@/types/todo/create-todo.type.ts';
 import { DomainTodo, DomainTodoStatus } from '@/types/todo/todo.type.ts';
-import { TODO_LOCAL_STORAGE_NAME } from '.const.ts';
+import { TODO_LOCAL_STORAGE_NAME } from './const.ts';
 
 
 export const addTodo = function (data: DomainCreateTodo): Promise<DomainTodo> {

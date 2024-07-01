@@ -26,7 +26,7 @@ export const UpdateTodoStatusSelection: FC<UpdateTodoStatusSelectionProps> = mem
     const { todoId, status, className, ...other }         = props;
     const todoStatus                                      = useUnit($todoItemsPendingStatus);
     const onSelect: ChangeEventHandler<HTMLSelectElement> = useCallback((event) => {
-        updateTodoEffect([ todoId, { status: event.target.value as DomainTodoStatus } ]);
+        updateTodoEffect([ todoId, { status: event.target.value as unknown as DomainTodoStatus } ]);
     }, [ todoId ]);
 
     return (

@@ -36,7 +36,7 @@ export const TodoList: FC<TodoListProps> = memo(function TodoList (props) {
                     <TodoItem
                         key={ todo.id }
                         title={ todo.title }
-                        prefix={
+                        prefixNode={
                             <RemoveTodoButton todoId={ todo.id }/>
                         }
                         postfix={
